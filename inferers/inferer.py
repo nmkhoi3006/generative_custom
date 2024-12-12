@@ -480,7 +480,7 @@ class LatentDiffusionInferer(DiffusionInferer):
                 decode = autoencoder_model.decode_stage_2_outputs
                 if isinstance(autoencoder_model, SPADEAutoencoderKL):
                     decode = partial(autoencoder_model.decode_stage_2_outputs, seg=seg)
-                intermediates.append(decode(latent_intermediate / self.scale_factor))
+                intermediates.append(decode(latent_intermediate / self.scale_factor, seg=seg))
             return image, intermediates
 
         else:
